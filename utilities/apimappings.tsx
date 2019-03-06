@@ -31,7 +31,7 @@ const OHLCMapping = (data, tradingpair) => {
             y: parseInt(x[4])
         }
     });
-    return mappedData.slice(0, 60);
+    return (mappedData.slice(0, 60)).reverse();
 }
 
 const apimappings = {
