@@ -6,9 +6,9 @@
 * Create new folder and `cd ./{new folder}` into it
 * In Terminal: `git clone git@github.com:razorsyntax/RNMarketTest.git` (or download manually)
 * In Terminal: `cd ./RNMarketTest && yarn install`
-* In Terminal: `react-native link` (just to be safe)
+* In Terminal: `react-native upgrade` ---> select `n` to not replace git ignore file. Select `y` to replace the others.
 
-Once yarn finishes.  Run `react-native run-{android | ios}`.
+Run `react-native run-{android | ios}`.
 
 
 #### Acknowledgement
