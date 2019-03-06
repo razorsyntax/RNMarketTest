@@ -9,3 +9,7 @@
 * In Terminal: `react-native link` (just to be safe)
 
 Once yarn finishes.  Run `react-native run-{android | ios}`.
+
+
+#### Acknowledgement
+[Crypto images from Atomic Labs](https://github.com/atomiclabs/cryptocurrency-icons)
