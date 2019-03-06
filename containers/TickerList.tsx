@@ -1,6 +1,6 @@
 import React from 'react';
 import { FlatList } from 'react-native';
-import TickerItem from '../components/TickerItem'
+import TickerItem from '../components/TickerItem/TickerItem'
 
 const TickerList = (props) => {
     return (
