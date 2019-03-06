@@ -9,10 +9,10 @@
 import React from 'react';
 import { Component } from 'react';
 import { Text, View, Button } from 'react-native';
-import BackEndClient from './services/dataService/data.service';
-import TickerList from './containers/TickerList';
-import apimappings from './utilities/apimappings';
-import TradeView from './containers/TradeView/TradeView';
+import BackEndClient from './src/services/dataService/data.service';
+import TickerList from './src/containers/TickerList';
+import apimappings from './src/utilities/apimappings';
+import TradeView from './src/containers/TradeView/TradeView';
 import AppStyles from './AppStyles';
 
 type Props = {};

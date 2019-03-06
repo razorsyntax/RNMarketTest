@@ -1,6 +1,6 @@
 import React from 'react';
 import { Modal, Button, Text, View, Image, StyleSheet, Platform } from 'react-native';
-import currencies from '../../assets/currencies';
+import currencies from '../../../assets/currencies';
 import ChartContainer from '../ChartContainer';
 import TradeViewStyles from './TradeViewStyles'
 

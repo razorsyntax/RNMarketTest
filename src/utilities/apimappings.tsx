@@ -1,4 +1,4 @@
-import currencies from '../assets/currencies';
+import currencies from '../../assets/currencies';
 import moment from 'moment';
 
 const BasePairsMapping = () => {
