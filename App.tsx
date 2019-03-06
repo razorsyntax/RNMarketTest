@@ -10,7 +10,7 @@
 import React from 'react';
 import { Component } from 'react';
 import { StyleSheet, Text, View, Button } from 'react-native';
-import KrakenClient from './services/dataService/data.service';
+import BackEndClient from './services/dataService/data.service';
 import TickerList from './containers/TickerList';
 import apimappings from './utilities/apimappings';
 import TradeView from './containers/TradeView';
@@ -30,9 +30,9 @@ export default class App extends Component<Props> {
   };
 
   async loadData() {
-    const kraken = new KrakenClient(key, secret);
+    const backEndApi = new BackEndClient(key, secret);
     const map = apimappings.BasePairsMapping();
-    await kraken.api('Ticker', { pair: map }).then(res => {
+    await backEndApi.api('Ticker', { pair: map }).then(res => {
       const adjustedData = apimappings.PriceDataMapping(res);
       this.setState({
         data: adjustedData

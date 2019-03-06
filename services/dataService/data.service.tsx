@@ -15,7 +15,7 @@ const defaults = {
 // Send an API request
 const rawRequest = async (url: string, headers: any, data: any, timeout: number) => {
 	// Set custom User-Agent string
-	headers['User-Agent'] = 'Kraken Javascript API Client';
+	headers['User-Agent'] = '<Obfuscated Message> Javascript API Client';
 
 	const options = { headers, timeout };
 
@@ -34,7 +34,7 @@ const rawRequest = async (url: string, headers: any, data: any, timeout: number)
 			.map((e: any) => e.substr(1));
 
 		if (!error.length) {
-			throw new Error("Kraken API returned an unknown error");
+			throw new Error("<Obfuscated Message> API returned an unknown error");
 		}
 
 		throw new Error(error.join(', '));
@@ -46,14 +46,14 @@ const rawRequest = async (url: string, headers: any, data: any, timeout: number)
 let config: any;
 
 /**
- * KrakenClient connects to the Kraken.com API
+ * BackEndClient connects to the <Obfuscated Message>.com API
  * @param {String}        key               API Key
  * @param {String}        secret            API Secret
  * @param {String|Object} [options={}]      Additional options. If a string is passed, will default to just setting `options.otp`.
  * @param {String}        [options.otp]     Two-factor password (optional) (also, doesn't work)
  * @param {Number}        [options.timeout] Maximum timeout (in milliseconds) for all API-calls (passed to `request`)
  */
-class KrakenClient {
+class BackEndClient {
 	constructor(key: string, secret: string, options?: any) {
 
 		// Allow passing the OTP as the third argument for backwards compatibility
@@ -116,4 +116,4 @@ class KrakenClient {
 	}
 }
 
-export default KrakenClient;
+export default BackEndClient;

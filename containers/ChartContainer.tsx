@@ -1,6 +1,6 @@
 import React from 'react';
 import { Component } from 'react';
-import KrakenClient from '../services/dataService/data.service';
+import BackEndClient from '../services/dataService/data.service';
 import apimappings from '../utilities/apimappings';
 import RenderLineChart from '../components/ChartComponent';
 
@@ -10,7 +10,6 @@ const secret: string = '...';
 export default class App extends Component<any> {
     constructor(props: any) {
         super(props);
-        
     }
 
     state = {
@@ -23,9 +22,9 @@ export default class App extends Component<any> {
     }
 
     async LoadChartData(tradingPair: string) {
-        const kraken = new KrakenClient(key, secret);
+        const backEndApi = new BackEndClient(key, secret);
 
-        await kraken.api('OHLC', { pair: tradingPair + '&interval=10080' }).then(res => {
+        await backEndApi.api('OHLC', { pair: tradingPair + '&interval=10080' }).then(res => {
             const adjustedData = apimappings.OHLCMapping(res, this.props.tradingPair);
             this.setState({
                 chartData: adjustedData
