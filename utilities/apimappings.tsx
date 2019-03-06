@@ -4,7 +4,6 @@ import moment from 'moment';
 const BasePairsMapping = () => {
     const assets = currencies.cryptoassets;
     const basepairs = assets.map(x => x.tradingpair);
-
     return basepairs.join(',');
 }
 
@@ -23,7 +22,7 @@ const PriceDataMapping = (data) => {
     return newArr;
 }
 
-const OHLCMapping = (data, tradingpair) => {
+const OHLCMapping = (data, tradingpair: string) => {
     const tradingData = data[tradingpair];
     const mappedData = tradingData.map(x => {
         return {

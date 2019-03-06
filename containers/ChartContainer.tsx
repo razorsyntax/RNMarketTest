@@ -4,8 +4,10 @@ import BackEndClient from '../services/dataService/data.service';
 import apimappings from '../utilities/apimappings';
 import RenderLineChart from '../components/ChartComponent';
 
-const key: string = '...';
-const secret: string = '...';
+interface ChartData {
+    x?: string;
+    y?: number;
+}
 
 export default class App extends Component<any> {
     constructor(props: any) {
@@ -22,10 +24,10 @@ export default class App extends Component<any> {
     }
 
     async LoadChartData(tradingPair: string) {
-        const backEndApi = new BackEndClient(key, secret);
+        const backEndApi = new BackEndClient();
 
         await backEndApi.api('OHLC', { pair: tradingPair + '&interval=10080' }).then(res => {
-            const adjustedData = apimappings.OHLCMapping(res, this.props.tradingPair);
+            const adjustedData: ChartData = apimappings.OHLCMapping(res, this.props.tradingPair);
             this.setState({
                 chartData: adjustedData
             })
@@ -33,7 +35,7 @@ export default class App extends Component<any> {
             this.setState({
                 chartData: null
             });
-            console.log('failed to load');
+            console.log(`Failed to Load: ${err}`);
         });
     };
 

@@ -1,6 +1,5 @@
 /**
- * Sample React Native App
- * https://github.com/facebook/react-native
+ * React Native Market Test
  *
  * @format
  * @flow
@@ -16,9 +15,6 @@ import apimappings from './utilities/apimappings';
 import TradeView from './containers/TradeView/TradeView';
 import AppStyles from './AppStyles';
 
-const key: string = '...';
-const secret: string = '...';
-
 type Props = {};
 export default class App extends Component<Props> {
   constructor(props) {
@@ -31,8 +27,8 @@ export default class App extends Component<Props> {
   };
 
   async loadData() {
-    const backEndApi = new BackEndClient(key, secret);
-    const map = apimappings.BasePairsMapping();
+    const backEndApi = new BackEndClient();
+    const map: string = apimappings.BasePairsMapping();
     await backEndApi.api('Ticker', { pair: map }).then(res => {
       const adjustedData = apimappings.PriceDataMapping(res);
       this.setState({
@@ -42,30 +38,30 @@ export default class App extends Component<Props> {
       this.setState({
         data: 'failed to load'
       })
+      console.log(err);
     });
   };
 
-  itemSelectedHandler = (key) => {
+  itemSelectedHandler = (key: string) => {
     this.setState({
       selectedItem: key
     })
-  }
+  };
 
   modalClosedHandler = () => {
     this.setState({
       selectedItem: null
     })
-  }
+  };
 
   render() {
     const resData = (this.state.data !== null) ? <TickerList assetListItems={this.state.data} onItemSelected={this.itemSelectedHandler} /> : null;
     return (
       <View style={AppStyles.container}>
-        <TradeView selectedAsset={this.state.selectedItem} onModalClosed={this.modalClosedHandler}/> 
+        <TradeView selectedAsset={this.state.selectedItem} onModalClosed={this.modalClosedHandler} />
         <Text style={AppStyles.welcome}>Crypto Asset Prices</Text>
-        <Button title={'Press Me'} onPress={this.loadData.bind(this)}/>
+        <Button title={'Press Me'} onPress={this.loadData.bind(this)} />
         <View style={AppStyles.listContainer}>{resData}</View>
-        
       </View>
     );
   }

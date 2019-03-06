@@ -1,19 +1,23 @@
+/**
+ * Bastardized version of npm <Obfuscated Message> api
+ */
+
 import axios from 'axios';
 
 // Public/Private method names
-const methods = {
+const methods: { public: string[] } = {
 	public: ['Time', 'Assets', 'AssetPairs', 'Ticker', 'Depth', 'Trades', 'Spread', 'OHLC'],
 };
 
 // Default options
-const defaults = {
+const defaults: { url: string, version: number, timeout: number } = {
 	url: 'https://api.kraken.com',
 	version: 0,
 	timeout: 5000,
 };
 
 // Send an API request
-const rawRequest = async (url: string, headers: any, data: any, timeout: number) => {
+const rawRequest = async (url: string, headers: {}, data: any, timeout: number) => {
 	// Set custom User-Agent string
 	headers['User-Agent'] = '<Obfuscated Message> Javascript API Client';
 
@@ -25,13 +29,13 @@ const rawRequest = async (url: string, headers: any, data: any, timeout: number)
 	});
 
 	// Refactor
-	const body: any | {} = await axios.get(url + '?pair=' + data.pair, options);
+	const body = await axios.get(url + '?pair=' + data.pair, options);
 	const response = body.data.result;
 
 	if (response.error && response.error.length) {
 		const error = response.error
-			.filter((e: any) => e.startsWith('E'))
-			.map((e: any) => e.substr(1));
+			.filter((e) => e.startsWith('E'))
+			.map((e) => e.substr(1));
 
 		if (!error.length) {
 			throw new Error("<Obfuscated Message> API returned an unknown error");
@@ -54,14 +58,14 @@ let config: any;
  * @param {Number}        [options.timeout] Maximum timeout (in milliseconds) for all API-calls (passed to `request`)
  */
 class BackEndClient {
-	constructor(key: string, secret: string, options?: any) {
+	constructor(options?: any) {
 
 		// Allow passing the OTP as the third argument for backwards compatibility
 		if (typeof options === 'string') {
 			options = { otp: options };
 		}
 
-		config = Object.assign({ key, secret }, defaults, options);
+		config = Object.assign(defaults, options);
 	}
 
 	/**
@@ -93,7 +97,7 @@ class BackEndClient {
 	 * @param  {Function} callback A callback function to be executed when the request is complete
 	 * @return {Object}            The request object
 	 */
-	publicMethod(method: string, params: any, callback: any) {
+	publicMethod(method: string, params, callback) {
 		params = params || {};
 
 		// Default params to empty object
@@ -102,8 +106,8 @@ class BackEndClient {
 			params = {};
 		}
 
-		const path = '/' + config.version + '/public/' + method;
-		const url = config.url + path;
+		const path: string = '/' + config.version + '/public/' + method;
+		const url: string = config.url + path;
 		const response = rawRequest(url, {}, params, config.timeout);
 
 		if (typeof callback === 'function') {
