@@ -8,7 +8,7 @@
 * In Terminal: `cd ./RNMarketTest && yarn install`
 * In Terminal: `react-native upgrade` ---> select `n` to not replace git ignore file. Select `y` to replace the others.
 
-Run `react-native run-{android | ios}`.
+To Run Project: `react-native run-{android | ios}`.
 
 
 #### Acknowledgement
