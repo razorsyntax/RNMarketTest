@@ -5,12 +5,12 @@ const AppStyles = StyleSheet.create({
         flex: 1,
         justifyContent: 'flex-end',
         alignItems: 'center',
-        backgroundColor: '#F5FCFF'
+        backgroundColor: '#ffffff'
     },
     welcome: {
         fontSize: 20,
         textAlign: 'center',
-        margin: 10,
+        margin: 10
     },
     instructions: {
         textAlign: 'center',
